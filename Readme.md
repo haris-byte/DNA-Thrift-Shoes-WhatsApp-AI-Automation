@@ -29,3 +29,39 @@ Customers can send shoe text queries or shoe images. The backend validates incom
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+``` 
+
+## Day 2 Progress
+
+- Added stricter webhook validation
+- Text messages now require text
+- Image messages now require image_url
+- Added ShoeQuery model
+- Added TextParserResult model
+- Built a rule-based text parser
+- Parser extracts brand, model, and US size
+- Parser asks clarification when model or size is missing
+
+## Example Text Query
+
+Input:
+
+```json
+{
+  "sender_id": "user_123",
+  "message_id": "msg_001",
+  "message_type": "text",
+  "text": "Do you have Air Jordan 1 size 10?",
+  "image_url": null
+}
+```
+
+Output:
+```json
+{
+  "brand": "Nike",
+  "model": "Air Jordan 1",
+  "size_us": 10.0,
+  "confidence": 1.0
+}
+```
