@@ -31,18 +31,34 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ``` 
 
+
 ## Day 2 Progress
 
-- Added stricter webhook validation
-- Text messages now require text
-- Image messages now require image_url
-- Added ShoeQuery model
-- Added TextParserResult model
-- Built a rule-based text parser
-- Parser extracts brand, model, and US size
-- Parser asks clarification when model or size is missing
+Day 2 completed the text-query parsing path and inventory lookup/pricing logic.
 
-## Example Text Query
+### Added
+
+- Strict `ShoeQuery` Pydantic model
+- `InventoryItem` Pydantic model
+- `InventoryMatchResult` Pydantic model
+- Rule-based text parser
+- Sample DNA Thrift inventory
+- Exact match handling
+- Partial match handling
+- No-match handling
+- Condition-based pricing
+
+### Text Query Flow
+
+```text
+Customer text
+→ WhatsAppWebhookPayload validation
+→ Text parser
+→ ShoeQuery
+→ Inventory lookup
+→ Price calculation
+→ Reply preview
+```
 
 Input:
 
@@ -57,11 +73,8 @@ Input:
 ```
 
 Output:
-```json
-{
-  "brand": "Nike",
-  "model": "Air Jordan 1",
-  "size_us": 10.0,
-  "confidence": 1.0
-}
-```
+
+Yes, we have Nike Air Jordan 1 Retro High in US 10.0.
+Condition: 9/10.
+Price: Rs. 18500.
+Availability: in_stock.

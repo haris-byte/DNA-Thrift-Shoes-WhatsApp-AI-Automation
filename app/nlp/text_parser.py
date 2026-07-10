@@ -12,6 +12,11 @@ BRAND_KEYWORDS = {
     "converse": "Converse",
     "jordan": "Nike",
     "air jordan": "Nike",
+    "air force": "Nike",
+    "air force 1": "Nike",
+    "af1": "Nike",
+    "dunk": "Nike",
+    "dunk low": "Nike",
 }
 
 MODEL_KEYWORDS = {
@@ -20,6 +25,7 @@ MODEL_KEYWORDS = {
     "air force 1": "Air Force 1",
     "af1": "Air Force 1",
     "air max": "Air Max",
+    "dunk low": "Dunk Low",
     "yeezy": "Yeezy",
     "ultraboost": "Ultraboost",
     "stan smith": "Stan Smith",
@@ -33,11 +39,23 @@ def normalize_text(text: str) -> str:
     return text.lower().strip()
 
 
+def contains_phrase(text: str, phrase: str) -> bool:
+    escaped_phrase = re.escape(phrase.lower())
+    pattern = rf"\b{escaped_phrase}\b"
+    return re.search(pattern, text) is not None
+
+
 def extract_brand(text: str) -> str | None:
     normalized = normalize_text(text)
 
-    for keyword, brand in BRAND_KEYWORDS.items():
-        if keyword in normalized:
+    sorted_keywords = sorted(
+        BRAND_KEYWORDS.items(),
+        key=lambda item: len(item[0]),
+        reverse=True
+    )
+
+    for keyword, brand in sorted_keywords:
+        if contains_phrase(normalized, keyword):
             return brand
 
     return None
@@ -46,8 +64,14 @@ def extract_brand(text: str) -> str | None:
 def extract_model(text: str) -> str | None:
     normalized = normalize_text(text)
 
-    for keyword, model in MODEL_KEYWORDS.items():
-        if keyword in normalized:
+    sorted_keywords = sorted(
+        MODEL_KEYWORDS.items(),
+        key=lambda item: len(item[0]),
+        reverse=True
+    )
+
+    for keyword, model in sorted_keywords:
+        if contains_phrase(normalized, keyword):
             return model
 
     return None
@@ -71,7 +95,11 @@ def extract_size(text: str) -> float | None:
     return None
 
 
-def calculate_confidence(brand: str | None, model: str | None, size_us: float | None) -> float:
+def calculate_confidence(
+    brand: str | None,
+    model: str | None,
+    size_us: float | None
+) -> float:
     score = 0.0
 
     if brand:
@@ -107,7 +135,7 @@ def parse_text_query(text: str) -> TextParserResult:
     model = extract_model(text)
     size_us = extract_size(text)
 
-    missing_fields = []
+    missing_fields: list[str] = []
 
     if not brand:
         missing_fields.append("brand")
@@ -126,7 +154,7 @@ def parse_text_query(text: str) -> TextParserResult:
         size_us=size_us,
         condition_score=None,
         confidence=confidence,
-        source="text"
+        source="text_rule_parser"
     )
 
     clarification_needed = len(missing_fields) > 0
