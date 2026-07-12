@@ -2,6 +2,9 @@
 
 A production-oriented backend for a WhatsApp thrift-shoe assistant. Customers can send natural-language requests or real shoe images. The application validates every boundary with Pydantic, uses a vision-language model for brand/model/condition recognition, uses EasyOCR for size-tag reading, searches a persistent SQLite inventory, applies condition-based pricing, and routes the conversation through a deterministic state machine with loop prevention.
 
+<img width="1080" height="720" alt="image" src="https://github.com/user-attachments/assets/d7572b8e-72fd-4f47-8bb3-a8f81ab11f93" />
+
+
 ## What is implemented — Days 1 to 5
 
 ### Day 1 — Webhook and project foundation
