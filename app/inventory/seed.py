@@ -1,7 +1,7 @@
-from app.models.shoe_models import InventoryItem, StockStatus
+from app.models.inventory_models import InventoryItem, StockStatus
 
 
-SAMPLE_INVENTORY: list[InventoryItem] = [
+SEED_INVENTORY: list[InventoryItem] = [
     InventoryItem(
         product_id="DNA-001",
         product_name="Nike Air Jordan 1 Retro High",
@@ -9,9 +9,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Air Jordan 1",
         size_us=10.0,
         condition_score=9,
-        base_price=18500,
+        base_price=18_500,
         stock_status=StockStatus.IN_STOCK,
-        description="Lightly used premium thrift pair with minimal creasing."
+        description="Lightly used premium thrift pair with minimal creasing.",
     ),
     InventoryItem(
         product_id="DNA-002",
@@ -20,9 +20,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Air Jordan 1",
         size_us=9.0,
         condition_score=8,
-        base_price=16000,
+        base_price=16_000,
         stock_status=StockStatus.IN_STOCK,
-        description="Used pair with light toe-box creasing and clean outsole."
+        description="Used pair with light toe-box creasing and a clean outsole.",
     ),
     InventoryItem(
         product_id="DNA-003",
@@ -31,9 +31,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Air Jordan 1",
         size_us=11.0,
         condition_score=7,
-        base_price=15000,
+        base_price=15_000,
         stock_status=StockStatus.IN_STOCK,
-        description="Good thrift condition with visible wear near heel collar."
+        description="Good thrift condition with visible heel-collar wear.",
     ),
     InventoryItem(
         product_id="DNA-004",
@@ -42,9 +42,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Air Force 1",
         size_us=10.0,
         condition_score=6,
-        base_price=13500,
+        base_price=13_500,
         stock_status=StockStatus.IN_STOCK,
-        description="Visible creasing and moderate sole wear, still wearable."
+        description="Visible creasing and moderate sole wear; fully wearable.",
     ),
     InventoryItem(
         product_id="DNA-005",
@@ -53,9 +53,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Air Force 1",
         size_us=8.0,
         condition_score=8,
-        base_price=14500,
+        base_price=14_500,
         stock_status=StockStatus.RESERVED,
-        description="Reserved pair in good condition with minor outsole wear."
+        description="Reserved pair with minor outsole wear.",
     ),
     InventoryItem(
         product_id="DNA-006",
@@ -64,9 +64,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Ultraboost",
         size_us=10.0,
         condition_score=8,
-        base_price=17000,
+        base_price=17_000,
         stock_status=StockStatus.IN_STOCK,
-        description="Comfort running shoe with clean upper and light sole marks."
+        description="Clean knit upper with light sole marks.",
     ),
     InventoryItem(
         product_id="DNA-007",
@@ -75,9 +75,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Yeezy",
         size_us=9.0,
         condition_score=7,
-        base_price=24000,
+        base_price=24_000,
         stock_status=StockStatus.IN_STOCK,
-        description="Premium thrift pair with visible outsole wear."
+        description="Premium thrift pair with visible outsole wear.",
     ),
     InventoryItem(
         product_id="DNA-008",
@@ -86,9 +86,9 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Old Skool",
         size_us=10.0,
         condition_score=8,
-        base_price=9000,
+        base_price=9_000,
         stock_status=StockStatus.IN_STOCK,
-        description="Clean casual pair with minor canvas fading."
+        description="Clean casual pair with minor canvas fading.",
     ),
     InventoryItem(
         product_id="DNA-009",
@@ -97,8 +97,41 @@ SAMPLE_INVENTORY: list[InventoryItem] = [
         model="Chuck Taylor",
         size_us=9.0,
         condition_score=6,
-        base_price=8000,
+        base_price=8_000,
         stock_status=StockStatus.SOLD_OUT,
-        description="Classic high-top pair, currently sold out."
+        description="Classic high-top pair, currently sold out.",
+    ),
+    InventoryItem(
+        product_id="DNA-010",
+        product_name="Nike Dunk Low Panda",
+        brand="Nike",
+        model="Dunk Low",
+        size_us=9.0,
+        condition_score=8,
+        base_price=18_000,
+        stock_status=StockStatus.IN_STOCK,
+        description="Clean black-and-white pair with mild toe-box creasing.",
+    ),
+    InventoryItem(
+        product_id="DNA-011",
+        product_name="New Balance 550 White Green",
+        brand="New Balance",
+        model="New Balance 550",
+        size_us=10.0,
+        condition_score=9,
+        base_price=19_500,
+        stock_status=StockStatus.IN_STOCK,
+        description="Excellent thrift condition with minimal outsole wear.",
+    ),
+    InventoryItem(
+        product_id="DNA-012",
+        product_name="Puma Suede Classic",
+        brand="Puma",
+        model="Puma Suede",
+        size_us=9.0,
+        condition_score=7,
+        base_price=10_500,
+        stock_status=StockStatus.IN_STOCK,
+        description="Good suede upper with light color fading.",
     ),
 ]
